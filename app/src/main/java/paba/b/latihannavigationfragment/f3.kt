@@ -43,27 +43,10 @@ class f3 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val _tvFragment3 = view.findViewById<TextView>(R.id.tvFragment3)
-
-        // Retrieve value from arguments and decrease by 2
-        val currentValue = arguments?.getInt("value") ?: 97
-        _tvFragment3.text = currentValue.toString()
-
-        // Button to navigate to Fragment 3 with updated value
-        view.findViewById<Button>(R.id.btnFragment1).setOnClickListener {
-            val fragment1 = f1().apply {
-                arguments = Bundle().apply {
-                    putInt("value", currentValue - 1) // Decrease by 3 for Fragment 3
-                }
-            }
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.frameContainer, fragment1)
-                .addToBackStack(null)
-                .commit()
+        if(arguments!=null){
+            val dataTerima = arguments?.getString("HASIL")
+            _tvFragment3.text = dataTerima
         }
-//        if (arguments!=null){
-//            val currentValue = arguments?.getInt("value")
-//            _tvFragment3.text = currentValue.toString()
-//        }
     }
 
     companion object {

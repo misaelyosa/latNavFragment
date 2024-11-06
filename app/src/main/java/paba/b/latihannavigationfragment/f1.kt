@@ -47,24 +47,10 @@ class f1 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val _tvFragment1 = view.findViewById<TextView>(R.id.tvFragment1)
-
-        // Retrieve value from arguments
-        val currentValue = arguments?.getInt("value") ?: 99
-        _tvFragment1.text = currentValue.toString()
-
-        // Button to navigate to Fragment 2 with updated value
-        view.findViewById<Button>(R.id.btnFragment2).setOnClickListener {
-            val fragment2 = f2().apply {
-                arguments = Bundle().apply {
-                    putInt("value", currentValue - 2) // Decrease by 2 for Fragment 2
-                }
-            }
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.frameContainer, fragment2)
-                .addToBackStack(null)
-                .commit()
+        if(arguments!=null){
+            val dataTerima = arguments?.getString("HASIL")
+            _tvFragment1.text = dataTerima
         }
-        
     }
 
 
